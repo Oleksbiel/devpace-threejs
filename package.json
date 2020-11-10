@@ -1,0 +1,30 @@
+{
+  "name": "three-typescript-devpace",
+  "version": "1.0.0",
+  "description": "three.js + typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline --open",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "Huang Qi",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "latest",
+    "css-loader": "latest",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "latest",
+    "progress-bar-webpack-plugin": "latest",
+    "style-loader": "latest",
+    "typescript": "latest",
+    "url-loader": "^4.1.1",
+    "webpack": "latest",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "latest"
+  },
+  "dependencies": {
+    "three": "latest"
+  }
+}
