@@ -6,3 +6,8 @@ body {
   padding: 0;
   overflow: hidden;
 }
+
+.animation-3d {
+  width: 100%;
+  height: 100%;
+}

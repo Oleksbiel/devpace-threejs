@@ -12,10 +12,14 @@ let scene: THREE.Scene,
 
 let cameraHorzLimit: number = 8;
 let cameraVertLimit: number = 10;
-let cameraCenter = new THREE.Vector3();
-let mouse = new THREE.Vector2();
+let cameraCenter: THREE.Vector3 = new THREE.Vector3();
+let mouse: THREE.Vector2 = new THREE.Vector2();
+
+let container: HTMLElement;
 
 function init() {
+  container = document.getElementById("JS-3d");
+
   // Init
   camera = new THREE.PerspectiveCamera(
     35,
@@ -35,12 +39,17 @@ function init() {
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000); // Body background
-  document.body.appendChild(renderer.domElement);
+
+  document.body.appendChild(container);
+
+  container.appendChild(renderer.domElement);
+  // document.body.appendChild(renderer.domElement);
 
   // Camera 360deg
 
   orbitControls = new OrbitControls(camera, renderer.domElement);
   orbitControls.enableDamping = true;
+  orbitControls.enableZoom = false;
   // orbitControls.dampingFactor = 0.25;
   // orbitControls.enableZoom = true;
   orbitControls.update();
@@ -68,10 +77,8 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
-
-  orbitControls.update();
-  renderer.render(scene, camera);
   render();
+  orbitControls.update();
 }
 
 function onWindowResize() {
@@ -84,12 +91,15 @@ function initObjects() {
   const loader = new OBJLoader();
 
   loader.load("/src/assets/models/background.obj", function (object) {
-    // const materialScene = new THREE.MeshBasicMaterial( { color: 0x000000, roughness: 1 } );
+    // const materialScene = new THREE.MeshStandardMaterial({
+    //   color: 0xffffff,
+    //   roughness: 0,
+    // });
 
-    // object.traverse( function ( child ) {
-    // 	if ( child instanceof THREE.Mesh ){
-    // 		child.material = materialScene;
-    // 	}
+    // object.traverse(function (child) {
+    //   if (child instanceof THREE.Mesh) {
+    //     child.material = materialScene;
+    //   }
     // });
 
     object.scale.x = 0.2;
@@ -113,6 +123,7 @@ function initObjects() {
     object.scale.x = 0.2;
     object.scale.y = 0.2;
     object.scale.z = 0.2;
+
     scene.add(object);
   });
 }
@@ -120,6 +131,9 @@ function initObjects() {
 function render() {
   camera.position.x = cameraCenter.x + cameraHorzLimit * mouse.x;
   camera.position.y = cameraCenter.y + cameraVertLimit * mouse.y;
+
+  camera.lookAt(scene.position);
+  renderer.render(scene, camera);
 }
 
 function onDocumentMouseMove(event) {

@@ -15,19 +15,21 @@
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 // add styles
-__webpack_require__(/*! ./style.css */ "./src/style.css");
 // three.js
 const THREE = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
 const OrbitControls_1 = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
 const OBJLoader_js_1 = __webpack_require__(/*! three/examples/jsm/loaders/OBJLoader.js */ "./node_modules/three/examples/jsm/loaders/OBJLoader.js");
-let scene, camera, renderer, cube, orbitControls;
-let cameraHorzLimit = 5;
+__webpack_require__(/*! ./style.css */ "./src/style.css");
+let scene, camera, renderer, orbitControls;
+let cameraHorzLimit = 8;
 let cameraVertLimit = 10;
 let cameraCenter = new THREE.Vector3();
 let mouse = new THREE.Vector2();
+let container;
 function init() {
+    container = document.getElementById("JS-3d");
     // Init
-    camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, .1, 1000);
+    camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
     // Start Camera Position
     camera.position.set(-30, 30, 25); // camera.position.set( <X> , <Y> , <Z> );
     cameraCenter.x = camera.position.x;
@@ -36,7 +38,9 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000); // Body background
-    document.body.appendChild(renderer.domElement);
+    document.body.appendChild(container);
+    container.appendChild(renderer.domElement);
+    // document.body.appendChild(renderer.domElement);
     // Camera 360deg
     orbitControls = new OrbitControls_1.OrbitControls(camera, renderer.domElement);
     orbitControls.enableDamping = true;
@@ -52,11 +56,8 @@ function init() {
     // scene.add( cubeLight );
     // SquareLight
     const square = new THREE.BoxGeometry(4.5, 4.5, 4.5);
-    let cubeLight = new THREE.PointLight(0xffffff, .7, 40);
+    let cubeLight = new THREE.PointLight(0xffffff, 0.7, 40);
     cubeLight.add(new THREE.Mesh(square, new THREE.MeshBasicMaterial({ color: 0xffffff })));
-    // cubeLight.position.y = 7;
-    // cubeLight.position.x = -.5;
-    // cubeLight.position.z = -3.5;
     cubeLight.position.set(7.5, 5, 11);
     scene.add(cubeLight);
 }
@@ -67,60 +68,35 @@ function animate() {
     render();
 }
 function onWindowResize() {
-    // windowHalfX = window.innerWidth / 2;
-    // windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 function initObjects() {
     const loader = new OBJLoader_js_1.OBJLoader();
-    loader.load('assets/models/background.obj', function (object) {
-        // const materialScene = new THREE.MeshBasicMaterial( { color: 0x000000, roughness: 1 } );
-        // object.traverse( function ( child ) {
-        // 	if ( child instanceof THREE.Mesh ){
-        // 		child.material = materialScene;
-        // 	}
+    loader.load("/src/assets/models/background.obj", function (object) {
+        // const materialScene = new THREE.MeshStandardMaterial({
+        //   color: 0xffffff,
+        //   roughness: 0,
         // });
-        // object.material = materialScene;
-        // object.position.set( 0, - 150, - 150 );
-        // object.scale.multiplyScalar( 1 );
+        // object.traverse(function (child) {
+        //   if (child instanceof THREE.Mesh) {
+        //     child.material = materialScene;
+        //   }
+        // });
         object.scale.x = 0.2;
         object.scale.y = 0.2;
         object.scale.z = 0.2;
         scene.add(object);
     });
-    let devpaceCube;
-    // loader.load( 'models/devpace/cube.obj', function ( object ) {
-    // 	const materialScene = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-    // 	// object.position.set( 0, - 150, - 150 );
-    // 	// object.scale.multiplyScalar( -.5 );
-    // 	object.traverse( function ( child ) {
-    // 		if ( child instanceof THREE.Mesh ){
-    // 			child.material = materialScene;
-    // 		}
-    // 	});
-    // 	object.scale.x = 0.2;
-    // 	object.scale.y = 0.2;
-    // 	object.scale.z = 0.2;
-    // 	object.position.y = 4;
-    // 	object.position.x = -.5;
-    // 	object.position.z = -3.5;
-    // 	// object.rotation.x = -Math.PI / 2;
-    // 	scene.add( object );
-    // }); 
-    loader.load('./lines.obj', function (object) {
+    loader.load("/src/assets/models/lines.obj", function (object) {
         const materialScene = new THREE.MeshBasicMaterial({ color: 0xffffff });
         object.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = materialScene;
             }
         });
-        // object.position.y = 5;
         object.position.set(8, 5, 15);
-        // object.material = materialScene;
-        // object.position.set( 0, - 150, - 150 );
-        // object.scale.multiplyScalar( 400 );
         object.scale.x = 0.2;
         object.scale.y = 0.2;
         object.scale.z = 0.2;
@@ -128,26 +104,15 @@ function initObjects() {
     });
 }
 function render() {
-    // camera.position.x += ( mouseX - camera.position.x ) * .005;
-    // console.log(camera.position.y);
-    // if(camera.position.y < 10.5 && camera.position.y > 9.5){
-    // 	camera.position.y = 10;
-    // } else {
-    // camera.position.y += ( - mouseY - camera.position.y ) * .0005;
-    // }
-    // console.log('PositionX --', camera.position.x);
-    // console.log('PositionY --', camera.position.y);
-    // camera.lookAt( scene.position );
-    // renderer.render( scene, camera );
-    camera.position.x = cameraCenter.x + (cameraHorzLimit * mouse.x);
-    camera.position.y = cameraCenter.y + (cameraVertLimit * mouse.y);
+    camera.position.x = cameraCenter.x + cameraHorzLimit * mouse.x;
+    camera.position.y = cameraCenter.y + cameraVertLimit * mouse.y;
 }
 function onDocumentMouseMove(event) {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
-window.addEventListener('resize', onWindowResize, false);
-document.addEventListener('mousemove', onDocumentMouseMove, false);
+window.addEventListener("resize", onWindowResize, false);
+document.addEventListener("mousemove", onDocumentMouseMove, false);
 init();
 initObjects();
 animate();
@@ -178,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Styles go here. */\r\n\r\nhtml,\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA,oBAAoB;;AAEpB;;EAEE,SAAS;EACT,UAAU;AACZ","sourcesContent":["/* Styles go here. */\r\n\r\nhtml,\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Styles go here. */\r\n\r\nhtml,\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  overflow: hidden;\r\n}\r\n\r\n.animation-3d {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA,oBAAoB;;AAEpB;;EAEE,SAAS;EACT,UAAU;EACV,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd","sourcesContent":["/* Styles go here. */\r\n\r\nhtml,\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  overflow: hidden;\r\n}\r\n\r\n.animation-3d {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
