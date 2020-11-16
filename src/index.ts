@@ -207,11 +207,14 @@ function initObjects() {
   function createTile(
     object: THREE.Group,
     scale: number,
-    position: PositionType
+    position: PositionType,
+    rotationY: number = 0
   ) {
     object.scale.multiplyScalar(scale);
     object.position.set(position.x, position.y, position.z);
     setMaterial(object);
+
+    object.rotation.y = rotationY;
     listOfObjects.push(object);
   }
 
@@ -224,14 +227,14 @@ function initObjects() {
       y: Math.PI / 2,
       z: -10,
     };
-    createTile(object.clone(), level1ObjScale, obj1_1Position);
+    createTile(object.clone(), level1ObjScale, obj1_1Position, Math.PI / 2);
 
     let obj1_2Position: PositionType = {
       x: 10,
       y: Math.PI / -2,
       z: 10,
     };
-    createTile(object.clone(), level1ObjScale, obj1_2Position);
+    createTile(object.clone(), level1ObjScale, obj1_2Position, Math.PI / -2);
 
     let obj1_3Position: PositionType = {
       x: -10,
@@ -245,7 +248,7 @@ function initObjects() {
       y: Math.PI / 2,
       z: -10,
     };
-    createTile(object.clone(), level1ObjScale, obj1_4Position);
+    createTile(object.clone(), level1ObjScale, obj1_4Position, Math.PI / 2);
 
     // Level_2
     let obj2_1Position: PositionType = {
@@ -253,7 +256,7 @@ function initObjects() {
       y: 1,
       z: -32,
     };
-    createTile(object.clone(), level2ObjScale, obj2_1Position);
+    createTile(object.clone(), level2ObjScale, obj2_1Position, Math.PI / 2);
 
     let obj2_2Position: PositionType = {
       x: 32,
@@ -267,7 +270,7 @@ function initObjects() {
       y: 1,
       z: 32,
     };
-    createTile(object.clone(), level2ObjScale, obj2_3Position);
+    createTile(object.clone(), level2ObjScale, obj2_3Position, Math.PI / -2);
 
     let obj2_4Position: PositionType = {
       x: -32,
@@ -282,7 +285,7 @@ function initObjects() {
       y: 0,
       z: -42,
     };
-    createTile(object.clone(), level3ObjScale, obj3_1Position);
+    createTile(object.clone(), level3ObjScale, obj3_1Position, Math.PI / 2);
 
     let obj3_2Position: PositionType = {
       x: 42,
@@ -296,14 +299,14 @@ function initObjects() {
       y: 0,
       z: 42,
     };
-    createTile(object.clone(), level3ObjScale, obj3_3Position);
+    createTile(object.clone(), level3ObjScale, obj3_3Position, Math.PI / -2);
 
     let obj3_4Position: PositionType = {
       x: -42,
       y: 0,
       z: -42,
     };
-    createTile(object.clone(), level3ObjScale, obj3_4Position);
+    createTile(object.clone(), level3ObjScale, obj3_4Position, Math.PI / 2);
 
     // Level4
 
@@ -312,28 +315,28 @@ function initObjects() {
       y: 4,
       z: -60,
     };
-    createTile(object.clone(), level4ObjScale, obj4_1Position);
+    createTile(object.clone(), level4ObjScale, obj4_1Position, Math.PI / -2);
 
     let obj4_2Position: PositionType = {
       x: 60,
       y: 4,
       z: 0,
     };
-    createTile(object.clone(), level4ObjScale, obj4_2Position);
+    createTile(object.clone(), level4ObjScale, obj4_2Position, Math.PI / 2);
 
     let obj4_3Position: PositionType = {
       x: 0,
       y: 4,
       z: 60,
     };
-    createTile(object.clone(), level4ObjScale, obj4_3Position);
+    createTile(object.clone(), level4ObjScale, obj4_3Position, Math.PI / 2);
 
     let obj4_4Position: PositionType = {
       x: -60,
       y: 4,
       z: 0,
     };
-    createTile(object.clone(), level4ObjScale, obj4_4Position);
+    createTile(object.clone(), level4ObjScale, obj4_4Position, Math.PI / -2);
 
     scene.add(...listOfObjects);
   });
