@@ -1,71 +1,65 @@
 {
-	"terminal.integrated.cursorStyle": "line",
-	"editor.autoIndent": "full",
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
+  "terminal.integrated.cursorStyle": "line",
+  "editor.autoIndent": "full",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": true,
-		"source.fixAll.tslint": true
-	},
-	"editor.codeLens": true,
-	"editor.cursorBlinking": "phase",
-	"editor.cursorSmoothCaretAnimation": false,
-	"editor.cursorStyle": "line",
-	"editor.fontLigatures": true,
-	"editor.formatOnPaste": true,
-	"editor.formatOnType": false,
-	"editor.minimap.enabled": true,
-	"editor.renderWhitespace": "boundary",
-	"editor.tabCompletion": "on",
-	"editor.wordWrap": "off",
-	"files.defaultLanguage": "typescript",
-	"files.trimTrailingWhitespace": true,
-	"files.exclude": {
-		"package-lock.json": true,
-		".gitignore": true,
-		".prettierrc": true,
-		"tslint.json": false,
-		".npmrc": true,
-		"decorate-angular-cli.js": true,
-		"jest.config.js": true,
-		"karma.conf.js": true,
-		"tools": true,
-		"tsconfig.json": true,
-		"angular.json": true,
-		"nx.json": true,
-		"dist": true,
-		"node_modules": true,
-		"apps/**/browserslist": true,
-		"libs/**/jest.config.js": true,
-		"libs/**/tsconfig.json": true,
-		"libs/**/tsconfig.lib.json": true,
-		"libs/**/tsconfig.spec.json": true,
-		"libs/**/test-setup.ts": true,
-		".storybook": false
-	},
-	"search.exclude": {
-		"**/.git": true,
-		"**/node_modules": false,
-		"**/dist": false
-	},
-	"npm.enableScriptExplorer": true,
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"cSpell.words": [
-		"Datetime",
-		"autosize",
-		"datepicker",
-		"dropdowns",
-		"typeof"
-	],
-	"javascript.implicitProjectConfig.experimentalDecorators": true
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.tslint": true
+  },
+  "editor.codeLens": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": false,
+  "editor.cursorStyle": "line",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.minimap.enabled": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabCompletion": "on",
+  "editor.wordWrap": "off",
+  "files.defaultLanguage": "typescript",
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "package-lock.json": true,
+    ".gitignore": true,
+    ".prettierrc": true,
+    "tslint.json": false,
+    ".npmrc": true,
+    "decorate-angular-cli.js": true,
+    "jest.config.js": true,
+    "karma.conf.js": true,
+    "tools": true,
+    "tsconfig.json": true,
+    "angular.json": true,
+    "nx.json": true,
+    "dist": true,
+    // "node_modules": true,
+    "apps/**/browserslist": true,
+    "libs/**/jest.config.js": true,
+    "libs/**/tsconfig.json": true,
+    "libs/**/tsconfig.lib.json": true,
+    "libs/**/tsconfig.spec.json": true,
+    "libs/**/test-setup.ts": true,
+    ".storybook": false
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": false,
+    "**/dist": false
+  },
+  "npm.enableScriptExplorer": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": ["Datetime", "autosize", "datepicker", "dropdowns", "typeof"],
+  "javascript.implicitProjectConfig.experimentalDecorators": true
 }
